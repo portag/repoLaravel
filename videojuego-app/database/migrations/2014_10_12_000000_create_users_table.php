@@ -15,10 +15,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nick');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('pais');
+            $table->string('rol')->default('usuario');
+            $table->date('fnacimiento');
+            $table->string('imagen')->nullable();
+            $table->foreignId('juego_favorito_id')->references('id')->on('juegos')->nullable();
+            $table->enum('nivel',['principiante','intermedio','alto'])->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
